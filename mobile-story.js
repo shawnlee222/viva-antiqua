@@ -11,9 +11,9 @@
       {label:'02 / UNDERSTAND',title:'Ask the text<br><em>and go deeper</em>',text:'Explore grammar and meaning with your AI tutor',image:'ask-balbus-iphone.jpg',button:'Explore the screen',focus:'balbus'},
       {label:'03 / REMEMBER',title:'Make it<br><em>stay with you</em>',text:'Review your saved words and passages',image:'review-card-iphone.png',button:'Explore the screen',focus:'review'}]},
     {id:'verse',kind:'verse',label:'LATIN · RECONSTRUCTED PRONUNCIATION',title:'Feel the<br><em>rhythm</em>',text:'Hear the Aeneid in its original metre',image:'aeneid-verse-poster.jpg',video:'aeneid-verse-iphone.mp4',button:'Listen to the Aeneid'},
-    {id:'community',kind:'community',label:'A LANGUAGE TO SHARE',title:'Find your<br><em>people</em>',text:'Write stories and role-play with fellow learners',image:'play-iphone.jpg',button:'Explore the screen'},
-    {id:'homer',kind:'homer',label:'THE ILIAD & THE ODYSSEY',title:'Before books<br><em>there was song</em>',text:'All 48 books sung in Ancient Greek',image:'odyssey-song-poster.jpg?v=2',video:'odyssey-song-iphone.mp4?v=2',button:'Listen to Homer'},
-    {id:'speech',kind:'speech',label:'ATHENS · PERICLES',title:'History<br><em>speaking again</em>',text:'An ancient speech brought to life in its own language',image:'pericles-poster.jpg',video:'pericles-speech-mobile.mp4?v=2',button:'Watch the speech'}
+    {id:'community',kind:'community',label:'A LANGUAGE TO SHARE',title:'Learn and create<br><em>together</em>',text:'Write stories and role-play with fellow learners',image:'play-iphone.jpg',button:'Explore the screen'},
+    {id:'homer',kind:'homer',label:'THE ILIAD & THE ODYSSEY',title:'Homer<br><em>in song</em>',text:'All 48 books sung in Ancient Greek',image:'odyssey-song-poster.jpg?v=2',video:'odyssey-song-iphone.mp4?v=2',button:'Listen to Homer'},
+    {id:'speech',kind:'speech',label:'ATHENS · PERICLES',title:'History<br><em>brought to life</em>',text:'Pericles’ Funeral Oration in Ancient Greek',image:'pericles-poster.jpg',video:'pericles-speech-mobile.mp4?v=2',button:'Watch the speech'}
   ];
   function setup() {
     dispose?.(); dispose=null;
@@ -28,7 +28,7 @@
       track.innerHTML=`<div class="cinema-stage">${steps.map((s,i)=>`<article class="cinema-shot ${s.focus||''}" ${i?'inert aria-hidden="true"':''}>
         <div class="cinema-art">${s.video?`<div class="cinema-device"><video controls playsinline preload="none" src="${base}media/${s.video}" poster="${base}assets/${s.image}" aria-label="${s.button}" width="${data.kind==='speech'?720:388}" height="${data.kind==='speech'?1280:844}"></video></div>`:`<button class="cinema-device cinema-image-open" type="button" data-src="${base}assets/${s.image}" aria-label="${s.button}"><img src="${base}assets/${s.image}" alt="${s.label}" width="388" height="844" loading="lazy"></button>`}</div>
         <div class="cinema-shade"></div><div class="cinema-copy"><p class="cinema-label">${s.label}</p><h2>${s.title}</h2><p class="cinema-description">${s.text}</p></div>
-        <div class="cinema-count" aria-hidden="true">${data.steps?`${i+1} / 3`:'SCROLL TO EXPLORE ↓'}</div></article>`).join('')}<div class="cinema-progress" aria-hidden="true"><span></span></div></div>`;
+        <div class="cinema-count" aria-hidden="true">${data.kind==='speech'?'':data.steps?`${i+1} / 3`:'SCROLL TO EXPLORE ↓'}</div></article>`).join('')}<div class="cinema-progress" aria-hidden="true"><span></span></div></div>`;
       root.append(track);tracks.push({track,shots:[...track.querySelectorAll('.cinema-shot')]});
     }
     const end=document.createElement('footer');end.className='cinema-end';end.innerHTML=`<p class="cinema-label">THE PAST IS JUST THE BEGINNING</p><h2>Vīva Antīqua</h2><p>Latin & Ancient Greek<br>Preparing for App Store release</p><div><a href="${base}support/">Support</a><a href="${base}privacy/">Privacy</a><a href="${base}terms/">Terms</a></div>`;root.append(end);
