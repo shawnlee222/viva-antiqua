@@ -1,59 +1,68 @@
-/* Enhance only portrait-size mobile layouts; desktop DOM and behavior stay intact. */
+/* A separate mobile presentation. Original desktop markup is never rewritten. */
 (() => {
-  const mobile = matchMedia('(max-width: 760px) and (min-height: 600px)');
-  const section = document.querySelector('#experience');
-  const radios = [...section.querySelectorAll('input[name="learning-feature"]')];
-  let cleanup;
+  const media = matchMedia('(max-width:760px) and (min-height:600px)');
+  const motion = matchMedia('(prefers-reduced-motion:reduce)');
+  const base = '/viva-antiqua/';
+  let dispose;
+  const scenes = [
+    {id:'opening',kind:'opening',label:'VIVA ANTIQUA',title:'The ancient world.<br><em>In your hands.</em>',text:'Read. Listen. Understand.',image:'caesar-reader-poster.jpg',video:'caesar-reader-iphone.mp4',button:'Watch the reader'},
+    {id:'learning',kind:'learning',steps:[
+      {label:'01 / READ',title:'Every word.<br><em>Within reach.</em>',text:'Tap a word. Discover its meaning.',image:'dictionary-iphone.jpg',button:'Explore the screen',focus:'dictionary'},
+      {label:'02 / UNDERSTAND',title:'Ask the text.<br><em>Go deeper.</em>',text:'Grammar and meaning, with your AI tutor.',image:'ask-balbus-iphone.jpg',button:'Explore the screen',focus:'balbus'},
+      {label:'03 / REMEMBER',title:'Make it<br><em>stay with you.</em>',text:'Your words. Your passages. Ready to review.',image:'review-card-iphone.png',button:'Explore the screen',focus:'review'}]},
+    {id:'verse',kind:'verse',label:'LATIN · RECONSTRUCTED PRONUNCIATION',title:'Feel the<br><em>rhythm.</em>',text:'Hear the Aeneid in its original metre.',image:'aeneid-verse-poster.jpg',video:'aeneid-verse-iphone.mp4',button:'Listen to the Aeneid'},
+    {id:'community',kind:'community',label:'A LANGUAGE TO SHARE',title:'Find your<br><em>people.</em>',text:'Shared stories. Role-play. Latin pen pals.',image:'play-iphone.jpg',button:'Explore the screen'},
+    {id:'homer',kind:'homer',label:'THE ILIAD & THE ODYSSEY',title:'Before books,<br><em>there was song.</em>',text:'48 books. Ancient Greek. A voice for every verse.',image:'iliad-song-poster.jpg',video:'iliad-song-iphone.mp4?v=2',button:'Listen to Homer'},
+    {id:'speech',kind:'speech',label:'ATHENS · PERICLES',title:'History.<br><em>Speaking again.</em>',text:'An ancient speech, brought to life in its own language.',image:'pericles-poster.jpg',video:'pericles-speech.mp4',button:'Watch the speech'}
+  ];
   function setup() {
-    cleanup?.();
-    cleanup = null;
-    if (!mobile.matches) return;
-    const previousSelection = radios.find(r => r.checked);
-    const stage = document.createElement('div');
-    stage.className = 'mobile-learning-stage';
-    while (section.firstChild) stage.append(section.firstChild);
-    section.append(stage);
-    section.classList.add('mobile-story');
-    const hint = document.createElement('p');
-    hint.className = 'mobile-story-hint';
-    hint.textContent = 'Scroll to explore · 1 / 3';
-    stage.append(hint);
-    let frame = 0;
-    function update() {
-      frame = 0;
-      const top = section.getBoundingClientRect().top;
-      const travel = section.offsetHeight - stage.offsetHeight;
-      const progress = Math.max(0, Math.min(1, (56 - top) / Math.max(1, travel)));
-      const index = Math.min(2, Math.floor(progress * 3));
-      radios[index].checked = true;
-      hint.textContent = `Scroll to explore · ${index + 1} / 3`;
+    dispose?.(); dispose=null;
+    if (!media.matches) return;
+    const root=document.createElement('div');root.className='cinema-mobile';
+    root.innerHTML=`<nav class="cinema-nav" aria-label="Mobile demo"><a href="#cinema-opening" class="cinema-brand">Vīva Antīqua</a><div><a href="#cinema-learning">App</a><a href="#cinema-homer">Homer</a><a href="#cinema-speech">Pericles</a></div></nav>`;
+    const tracks=[];
+    for(const data of scenes){
+      const track=document.createElement('section');track.className=`cinema-track cinema-${data.kind}`;track.id='cinema-'+data.id;
+      const steps=data.steps||[data];
+      track.style.setProperty('--stops',steps.length);
+      track.innerHTML=`<div class="cinema-stage">${steps.map((s,i)=>`<article class="cinema-shot ${s.focus||''}" ${i?'inert aria-hidden="true"':''}>
+        <div class="cinema-art"><img src="${base}assets/${s.image}" alt="${s.video?s.button:s.button+' — '+s.label}" width="${data.kind==='speech'?720:388}" height="${data.kind==='speech'?1280:844}" ${data.id==='opening'?'fetchpriority="high"':'loading="lazy"'}></div>
+        <div class="cinema-shade"></div><div class="cinema-copy"><p class="cinema-label">${s.label}</p><h2>${s.title}</h2><p class="cinema-description">${s.text}</p><button class="cinema-play" type="button" data-kind="${s.video?'video':'image'}" data-src="${base+(s.video?'media/'+s.video:'assets/'+s.image)}"><span aria-hidden="true">${s.video?'▶':'＋'}</span> ${s.button}</button></div>
+        <div class="cinema-count" aria-hidden="true">${data.steps?`${i+1} / 3`:'SCROLL TO EXPLORE ↓'}</div></article>`).join('')}<div class="cinema-progress" aria-hidden="true"><span></span></div></div>`;
+      root.append(track);tracks.push({track,shots:[...track.querySelectorAll('.cinema-shot')]});
     }
-    function schedule() { if (!frame) frame = requestAnimationFrame(update); }
-    function select(event) {
-      const index = radios.indexOf(event.target);
-      if (index < 0) return;
-      const start = scrollY + section.getBoundingClientRect().top - 56;
-      const travel = section.offsetHeight - stage.offsetHeight;
-      // Jump to the middle of each stage so reverse scrolling remains predictable.
-      scrollTo({top: start + travel * ((index + .5) / 3), behavior: 'instant'});
-      update();
+    const end=document.createElement('footer');end.className='cinema-end';end.innerHTML=`<p class="cinema-label">THE PAST IS JUST THE BEGINNING</p><h2>Vīva Antīqua</h2><p>Latin & Ancient Greek.<br>Preparing for App Store release.</p><div><a href="${base}support/">Support</a><a href="${base}privacy/">Privacy</a><a href="${base}terms/">Terms</a></div>`;root.append(end);
+    const dialog=document.createElement('dialog');dialog.className='cinema-dialog';dialog.setAttribute('aria-label','Demo viewer');dialog.innerHTML='<button class="cinema-close" type="button" aria-label="Close demo">×</button><div class="cinema-player"></div>';root.append(dialog);
+    document.body.append(root);document.documentElement.classList.add('cinema-enabled');
+    let frame=0,returnFocus;
+    function close(){dialog.close();dialog.querySelector('.cinema-player').replaceChildren();returnFocus?.focus({preventScroll:true});}
+    function click(e){
+      const link=e.target.closest('.cinema-nav a');
+      if(link){e.preventDefault();document.querySelector(link.getAttribute('href')).scrollIntoView({behavior:motion.matches?'instant':'smooth'});return;}
+      const button=e.target.closest('.cinema-play');
+      if(button){returnFocus=button;const el=document.createElement(button.dataset.kind==='video'?'video':'img');el.src=button.dataset.src;if(el.tagName==='VIDEO'){el.controls=true;el.playsInline=true;el.preload='metadata';}else{el.alt='Full app screen';}dialog.querySelector('.cinema-player').replaceChildren(el);dialog.showModal();if(el.tagName==='VIDEO')el.play().catch(()=>{});return;}
+      if(e.target.closest('.cinema-close')||e.target===dialog)close();
     }
-    addEventListener('scroll', schedule, {passive:true});
-    addEventListener('resize', schedule);
-    section.addEventListener('change', select);
-    update();
-    cleanup = () => {
-      cancelAnimationFrame(frame);
-      removeEventListener('scroll', schedule);
-      removeEventListener('resize', schedule);
-      section.removeEventListener('change', select);
-      hint.remove();
-      if (previousSelection) previousSelection.checked = true;
-      while (stage.firstChild) section.insertBefore(stage.firstChild, stage);
-      stage.remove();
-      section.classList.remove('mobile-story');
-    };
+    root.addEventListener('click',click);dialog.addEventListener('cancel',e=>{e.preventDefault();close();});
+    function update(){
+      frame=0;
+      for(const {track,shots} of tracks){
+        const rect=track.getBoundingClientRect(),height=track.querySelector('.cinema-stage').offsetHeight;
+        const p=Math.max(0,Math.min(1,-rect.top/Math.max(1,rect.height-height)));
+        const active=Math.min(shots.length-1,Math.floor(p*shots.length));
+        for(let i=0;i<shots.length;i++){
+          const shot=shots[i],local=Math.max(0,Math.min(1,p*shots.length-i));
+          const visible=i===active;shot.inert=!visible;shot.setAttribute('aria-hidden',String(!visible));
+          shot.style.opacity=visible?'1':'0';
+          shot.style.setProperty('--zoom',motion.matches?'1':String(1+local*.16));
+          shot.style.setProperty('--drift',motion.matches?'0px':`${-local*36}px`);
+        }
+        track.style.setProperty('--progress',p);
+      }
+    }
+    function schedule(){if(!frame)frame=requestAnimationFrame(update);}
+    addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule);motion.addEventListener('change',schedule);update();
+    dispose=()=>{cancelAnimationFrame(frame);removeEventListener('scroll',schedule);removeEventListener('resize',schedule);motion.removeEventListener('change',schedule);dialog.close();dialog.querySelector('.cinema-player').replaceChildren();root.remove();document.documentElement.classList.remove('cinema-enabled');};
   }
-  mobile.addEventListener('change', setup);
-  setup();
+  media.addEventListener('change',setup);setup();
 })();
