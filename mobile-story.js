@@ -26,8 +26,8 @@
       const steps=data.steps||[data];
       track.style.setProperty('--stops',steps.length);
       track.innerHTML=`<div class="cinema-stage">${steps.map((s,i)=>`<article class="cinema-shot ${s.focus||''}" ${i?'inert aria-hidden="true"':''}>
-        <div class="cinema-art"><img src="${base}assets/${s.image}" alt="${s.video?s.button:s.button+' — '+s.label}" width="${data.kind==='speech'?720:388}" height="${data.kind==='speech'?1280:844}" ${data.id==='opening'?'fetchpriority="high"':'loading="lazy"'}></div>
-        <div class="cinema-shade"></div><div class="cinema-copy"><p class="cinema-label">${s.label}</p><h2>${s.title}</h2><p class="cinema-description">${s.text}</p><button class="cinema-play" type="button" data-kind="${s.video?'video':'image'}" data-src="${base+(s.video?'media/'+s.video:'assets/'+s.image)}"><span aria-hidden="true">${s.video?'▶':'＋'}</span> ${s.button}</button></div>
+        <div class="cinema-art">${s.video?`<div class="cinema-device"><video playsinline preload="none" poster="${base}assets/${s.image}" aria-label="${s.button}" width="${data.kind==='speech'?720:388}" height="${data.kind==='speech'?1280:844}"></video><button class="cinema-screen-play" type="button" data-src="${base}media/${s.video}" aria-label="${s.button}"><span aria-hidden="true">▶</span></button></div>`:`<button class="cinema-device cinema-image-open" type="button" data-src="${base}assets/${s.image}" aria-label="${s.button}"><img src="${base}assets/${s.image}" alt="${s.label}" width="388" height="844" loading="lazy"></button>`}</div>
+        <div class="cinema-shade"></div><div class="cinema-copy"><p class="cinema-label">${s.label}</p><h2>${s.title}</h2><p class="cinema-description">${s.text}</p></div>
         <div class="cinema-count" aria-hidden="true">${data.steps?`${i+1} / 3`:'SCROLL TO EXPLORE ↓'}</div></article>`).join('')}<div class="cinema-progress" aria-hidden="true"><span></span></div></div>`;
       root.append(track);tracks.push({track,shots:[...track.querySelectorAll('.cinema-shot')]});
     }
@@ -39,10 +39,18 @@
     function click(e){
       const link=e.target.closest('.cinema-nav a');
       if(link){e.preventDefault();document.querySelector(link.getAttribute('href')).scrollIntoView({behavior:motion.matches?'instant':'smooth'});return;}
-      const button=e.target.closest('.cinema-play');
-      if(button){returnFocus=button;const el=document.createElement(button.dataset.kind==='video'?'video':'img');el.src=button.dataset.src;if(el.tagName==='VIDEO'){el.controls=true;el.playsInline=true;el.preload='metadata';}else{el.alt='Full app screen';}dialog.querySelector('.cinema-player').replaceChildren(el);dialog.showModal();if(el.tagName==='VIDEO')el.play().catch(()=>{});return;}
+      const play=e.target.closest('.cinema-screen-play');
+      if(play){const video=play.parentElement.querySelector('video');if(!video.src)video.src=play.dataset.src;video.controls=true;video.play().catch(()=>{video.controls=false;play.hidden=false;});return;}
+      const button=e.target.closest('.cinema-image-open');
+      if(button){returnFocus=button;const el=document.createElement('img');el.src=button.dataset.src;el.alt='Full app screen';dialog.querySelector('.cinema-player').replaceChildren(el);dialog.showModal();return;}
       if(e.target.closest('.cinema-close')||e.target===dialog)close();
     }
+    root.querySelectorAll('.cinema-device video').forEach(video=>{
+      video.addEventListener('play',()=>{video.parentElement.querySelector('button').hidden=true;video.closest('.cinema-shot').classList.add('is-playing');});
+      video.addEventListener('ended',()=>{video.parentElement.querySelector('button').hidden=false;video.closest('.cinema-shot').classList.remove('is-playing');});
+    });
+    const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)entry.target.pause();}),{threshold:0.15});
+    root.querySelectorAll('video').forEach(v=>observer.observe(v));
     root.addEventListener('click',click);dialog.addEventListener('cancel',e=>{e.preventDefault();close();});
     function update(){
       frame=0;
@@ -62,7 +70,7 @@
     }
     function schedule(){if(!frame)frame=requestAnimationFrame(update);}
     addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule);motion.addEventListener('change',schedule);update();
-    dispose=()=>{cancelAnimationFrame(frame);removeEventListener('scroll',schedule);removeEventListener('resize',schedule);motion.removeEventListener('change',schedule);dialog.close();dialog.querySelector('.cinema-player').replaceChildren();root.remove();document.documentElement.classList.remove('cinema-enabled');};
+    dispose=()=>{observer.disconnect();root.querySelectorAll('video').forEach(v=>v.pause());cancelAnimationFrame(frame);removeEventListener('scroll',schedule);removeEventListener('resize',schedule);motion.removeEventListener('change',schedule);dialog.close();dialog.querySelector('.cinema-player').replaceChildren();root.remove();document.documentElement.classList.remove('cinema-enabled');};
   }
   media.addEventListener('change',setup);setup();
 })();

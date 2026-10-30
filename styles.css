@@ -213,3 +213,18 @@
     border-radius:14% / 6.5%;clip-path:inset(1px round 14% / 6.5%);
   }
 }
+@media(max-width:760px) and (min-height:600px){
+  .cinema-device{position:absolute;display:block;border:0;padding:0;background:transparent;color:inherit;overflow:hidden;cursor:pointer}
+  .cinema-track:not(.cinema-speech) .cinema-device{width:49%;right:14px;top:50%;transform:translateY(-50%);border-radius:14% / 6.5%;box-shadow:0 16px 45px #0005}
+  .cinema-track:not(.cinema-speech) .cinema-art .cinema-device img,
+  .cinema-track:not(.cinema-speech) .cinema-art .cinema-device video{position:static;display:block;width:100%;height:auto;max-height:none;max-width:100%;transform:none;box-shadow:none;border:0;border-radius:0;clip-path:none;background:transparent}
+  .cinema-screen-play{position:absolute;inset:0;width:100%;height:100%;border:0;background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff}
+  .cinema-screen-play[hidden]{display:none}
+  .cinema-screen-play span{display:flex;align-items:center;justify-content:center;width:52px;height:52px;padding-left:3px;border-radius:50%;background:#071321b8;border:1px solid #ffffff85;backdrop-filter:blur(8px);font-size:21px;box-shadow:0 4px 24px #0005}
+  .cinema-device:focus-visible,.cinema-screen-play:focus-visible{outline:2px solid #d28b65;outline-offset:-3px}
+  .cinema-speech .cinema-device{inset:0;width:100%;height:100%}
+  .cinema-speech .cinema-device video{width:100%;height:100%;object-fit:cover;border:0;border-radius:0;background:transparent}
+  .cinema-speech .is-playing .cinema-art{z-index:3;transform:none}
+  .cinema-speech .is-playing .cinema-device video{object-fit:contain;background:#071321}
+  .cinema-speech .is-playing .cinema-copy,.cinema-speech .is-playing .cinema-shade{opacity:0;pointer-events:none}
+}
