@@ -5,15 +5,15 @@
   const base = '/viva-antiqua/';
   let dispose;
   const scenes = [
-    {id:'opening',kind:'opening',label:'VIVA ANTIQUA',title:'The ancient world.<br><em>In your hands.</em>',text:'Read. Listen. Understand.',image:'caesar-reader-poster.jpg',video:'caesar-reader-iphone.mp4',button:'Watch the reader'},
+    {id:'opening',kind:'opening',label:'VIVA ANTIQUA',title:'The ancient world<br><em>in your hands</em>',text:'Read, listen, and understand',image:'caesar-reader-poster.jpg',video:'caesar-reader-iphone.mp4',button:'Watch the reader'},
     {id:'learning',kind:'learning',steps:[
-      {label:'01 / READ',title:'Every word.<br><em>Within reach.</em>',text:'Tap a word. Discover its meaning.',image:'dictionary-iphone.jpg',button:'Explore the screen',focus:'dictionary'},
-      {label:'02 / UNDERSTAND',title:'Ask the text.<br><em>Go deeper.</em>',text:'Grammar and meaning, with your AI tutor.',image:'ask-balbus-iphone.jpg',button:'Explore the screen',focus:'balbus'},
-      {label:'03 / REMEMBER',title:'Make it<br><em>stay with you.</em>',text:'Your words. Your passages. Ready to review.',image:'review-card-iphone.png',button:'Explore the screen',focus:'review'}]},
-    {id:'verse',kind:'verse',label:'LATIN · RECONSTRUCTED PRONUNCIATION',title:'Feel the<br><em>rhythm.</em>',text:'Hear the Aeneid in its original metre.',image:'aeneid-verse-poster.jpg',video:'aeneid-verse-iphone.mp4',button:'Listen to the Aeneid'},
-    {id:'community',kind:'community',label:'A LANGUAGE TO SHARE',title:'Find your<br><em>people.</em>',text:'Shared stories. Role-play. Latin pen pals.',image:'play-iphone.jpg',button:'Explore the screen'},
-    {id:'homer',kind:'homer',label:'THE ILIAD & THE ODYSSEY',title:'Before books,<br><em>there was song.</em>',text:'48 books. Ancient Greek. A voice for every verse.',image:'odyssey-song-poster.jpg?v=2',video:'odyssey-song-iphone.mp4?v=2',button:'Listen to Homer'},
-    {id:'speech',kind:'speech',label:'ATHENS · PERICLES',title:'History.<br><em>Speaking again.</em>',text:'An ancient speech, brought to life in its own language.',image:'pericles-poster.jpg',video:'pericles-speech-mobile.mp4?v=2',button:'Watch the speech'}
+      {label:'01 / READ',title:'Every word<br><em>within reach</em>',text:'Tap a word and discover its meaning',image:'dictionary-iphone.jpg?v=2',button:'Explore the screen',focus:'dictionary'},
+      {label:'02 / UNDERSTAND',title:'Ask the text<br><em>and go deeper</em>',text:'Explore grammar and meaning with your AI tutor',image:'ask-balbus-iphone.jpg',button:'Explore the screen',focus:'balbus'},
+      {label:'03 / REMEMBER',title:'Make it<br><em>stay with you</em>',text:'Review your saved words and passages',image:'review-card-iphone.png',button:'Explore the screen',focus:'review'}]},
+    {id:'verse',kind:'verse',label:'LATIN · RECONSTRUCTED PRONUNCIATION',title:'Feel the<br><em>rhythm</em>',text:'Hear the Aeneid in its original metre',image:'aeneid-verse-poster.jpg',video:'aeneid-verse-iphone.mp4',button:'Listen to the Aeneid'},
+    {id:'community',kind:'community',label:'A LANGUAGE TO SHARE',title:'Find your<br><em>people</em>',text:'Write stories and role-play with fellow learners',image:'play-iphone.jpg',button:'Explore the screen'},
+    {id:'homer',kind:'homer',label:'THE ILIAD & THE ODYSSEY',title:'Before books<br><em>there was song</em>',text:'All 48 books sung in Ancient Greek',image:'odyssey-song-poster.jpg?v=2',video:'odyssey-song-iphone.mp4?v=2',button:'Listen to Homer'},
+    {id:'speech',kind:'speech',label:'ATHENS · PERICLES',title:'History<br><em>speaking again</em>',text:'An ancient speech brought to life in its own language',image:'pericles-poster.jpg',video:'pericles-speech-mobile.mp4?v=2',button:'Watch the speech'}
   ];
   function setup() {
     dispose?.(); dispose=null;
@@ -31,7 +31,7 @@
         <div class="cinema-count" aria-hidden="true">${data.steps?`${i+1} / 3`:'SCROLL TO EXPLORE ↓'}</div></article>`).join('')}<div class="cinema-progress" aria-hidden="true"><span></span></div></div>`;
       root.append(track);tracks.push({track,shots:[...track.querySelectorAll('.cinema-shot')]});
     }
-    const end=document.createElement('footer');end.className='cinema-end';end.innerHTML=`<p class="cinema-label">THE PAST IS JUST THE BEGINNING</p><h2>Vīva Antīqua</h2><p>Latin & Ancient Greek.<br>Preparing for App Store release.</p><div><a href="${base}support/">Support</a><a href="${base}privacy/">Privacy</a><a href="${base}terms/">Terms</a></div>`;root.append(end);
+    const end=document.createElement('footer');end.className='cinema-end';end.innerHTML=`<p class="cinema-label">THE PAST IS JUST THE BEGINNING</p><h2>Vīva Antīqua</h2><p>Latin & Ancient Greek<br>Preparing for App Store release</p><div><a href="${base}support/">Support</a><a href="${base}privacy/">Privacy</a><a href="${base}terms/">Terms</a></div>`;root.append(end);
     const dialog=document.createElement('dialog');dialog.className='cinema-dialog';dialog.setAttribute('aria-label','Demo viewer');dialog.innerHTML='<button class="cinema-close" type="button" aria-label="Close demo">×</button><div class="cinema-player"></div>';root.append(dialog);
     document.body.append(root);document.documentElement.classList.add('cinema-enabled');
     let frame=0,returnFocus;
