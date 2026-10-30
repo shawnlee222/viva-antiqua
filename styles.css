@@ -22,3 +22,57 @@
 .play-features span{display:block;color:var(--muted);font-size:20px;line-height:1.6}
 
 .learning-feature .review-card-detail img{border-radius:28px;clip-path:none}
+
+/* Mobile presentation: compact typography, viewport-sized demos and direct navigation. */
+.mobile-nav{display:none}
+@media(max-width:760px){
+  html{scroll-padding-top:68px}
+  body{font-size:16px;line-height:1.55}
+  header,main,footer{padding-inline:20px}
+  header{min-height:72px;padding-block:14px;border-bottom:0}
+  .brand{font-size:21px;gap:10px}
+  .brand img{width:36px;height:36px}
+  header>nav{display:none}
+  .mobile-nav{display:flex;position:sticky;top:0;z-index:10;justify-content:center;gap:0;padding:6px 12px;background:rgba(7,19,33,.97);border-bottom:1px solid var(--line)}
+  .mobile-nav a{display:flex;align-items:center;justify-content:center;min-height:44px;flex:1;text-decoration:none;font-size:14px;color:var(--text);border-radius:6px}
+  .mobile-nav a:hover,.mobile-nav a:focus-visible{background:var(--raised)}
+  .hero{padding-block:28px 36px;gap:24px}
+  h1{font-size:clamp(29px,8.3vw,42px);line-height:1.12;letter-spacing:-1.2px;margin-bottom:16px}
+  h2{font-size:29px;line-height:1.15;letter-spacing:-.9px;margin-bottom:14px}
+  h3,.learning-feature h3{font-size:23px;line-height:1.2;letter-spacing:-.5px;margin-bottom:10px}
+  .lead{font-size:17px;line-height:1.55;margin-bottom:10px}
+  .hero-detail{font-size:14px;margin-bottom:0}
+  .button{font-size:15px;padding:11px 18px;min-height:44px;margin-top:18px;gap:18px}
+  .section{padding-block:32px}
+  .section-heading{margin-bottom:20px}
+  .section-intro,.learning-feature p{font-size:17px;line-height:1.55;margin-bottom:0}
+  .film,.reading-layout{gap:22px}
+  .demo,.film figure,.book-screen{width:fit-content;max-width:100%;justify-self:center;margin-inline:auto}
+  .demo video,.film video,.book-screen img{width:auto;max-width:100%;height:auto;max-height:400px;max-height:min(400px,56svh);object-fit:contain}
+  .hero .demo video{max-height:350px;max-height:min(350px,48svh)}
+  .learning-gallery{gap:18px}
+  .learning-choices{gap:6px;flex-wrap:nowrap}
+  .learning-choices label{flex:1}
+  .learning-choices span{text-align:center;white-space:nowrap;font-size:14px;padding:11px 8px;min-height:44px}
+  .learning-feature{padding-top:20px;gap:20px}
+  .play-features{gap:16px;margin-top:20px}
+  .play-features strong{font-size:17px;margin-bottom:3px}
+  .play-features span{font-size:16px;line-height:1.5}
+  .release{display:grid;grid-template-columns:40px 1fr;gap:12px;padding-block:26px}
+  .release img{width:40px;height:40px}
+  .release strong{font-size:19px}
+  .release p{font-size:14px}
+  .release>span{grid-column:2;margin:0;font-size:12px}
+  footer{padding-block:24px}
+  .footer-top{gap:16px;margin-bottom:16px}
+  .links{gap:20px}
+  .links a{min-height:44px;display:inline-flex;align-items:center}
+}
+@media(max-width:760px){
+  /* Reserve media dimensions before lazy images load so anchor links stay aligned. */
+  .demo,.film figure,.book-screen{width:min(184px,calc(56svh * 388 / 844))}
+  .hero .demo{width:min(161px,calc(48svh * 582 / 1266))}
+  #watch figure{width:min(225px,calc(56svh * 720 / 1280))}
+  .demo video,.film video,.book-screen img,.hero .demo video{width:100%;max-height:none;height:auto}
+  .book-screen img{aspect-ratio:388 / 844}
+}
