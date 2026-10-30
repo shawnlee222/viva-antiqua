@@ -12,7 +12,7 @@
       {label:'03 / REMEMBER',title:'Make it<br><em>stay with you.</em>',text:'Your words. Your passages. Ready to review.',image:'review-card-iphone.png',button:'Explore the screen',focus:'review'}]},
     {id:'verse',kind:'verse',label:'LATIN · RECONSTRUCTED PRONUNCIATION',title:'Feel the<br><em>rhythm.</em>',text:'Hear the Aeneid in its original metre.',image:'aeneid-verse-poster.jpg',video:'aeneid-verse-iphone.mp4',button:'Listen to the Aeneid'},
     {id:'community',kind:'community',label:'A LANGUAGE TO SHARE',title:'Find your<br><em>people.</em>',text:'Shared stories. Role-play. Latin pen pals.',image:'play-iphone.jpg',button:'Explore the screen'},
-    {id:'homer',kind:'homer',label:'THE ILIAD & THE ODYSSEY',title:'Before books,<br><em>there was song.</em>',text:'48 books. Ancient Greek. A voice for every verse.',image:'odyssey-song-poster.jpg',video:'odyssey-song-iphone.mp4',button:'Listen to Homer'},
+    {id:'homer',kind:'homer',label:'THE ILIAD & THE ODYSSEY',title:'Before books,<br><em>there was song.</em>',text:'48 books. Ancient Greek. A voice for every verse.',image:'odyssey-song-poster.jpg?v=2',video:'odyssey-song-iphone.mp4?v=2',button:'Listen to Homer'},
     {id:'speech',kind:'speech',label:'ATHENS · PERICLES',title:'History.<br><em>Speaking again.</em>',text:'An ancient speech, brought to life in its own language.',image:'pericles-poster.jpg',video:'pericles-speech-mobile.mp4?v=2',button:'Watch the speech'}
   ];
   function setup() {
