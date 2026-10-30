@@ -233,3 +233,5 @@
 .brand-lockup{filter:url(#brand-ink)}
 
 .cinema-nav .cinema-brand .brand-lockup{display:block;width:110px;height:auto;max-width:100%}
+
+.cinema-end .cinema-end-brand{margin:20px 0}.cinema-end-brand .brand-lockup{display:block;width:250px;max-width:100%;height:auto}

@@ -31,7 +31,7 @@
         <div class="cinema-count" aria-hidden="true">${data.kind==='speech'?'':data.steps?`${i+1} / 3`:'SCROLL TO EXPLORE ↓'}</div></article>`).join('')}<div class="cinema-progress" aria-hidden="true"><span></span></div></div>`;
       root.append(track);tracks.push({track,shots:[...track.querySelectorAll('.cinema-shot')]});
     }
-    const end=document.createElement('footer');end.className='cinema-end';end.innerHTML=`<p class="cinema-label">THE PAST IS JUST THE BEGINNING</p><h2>Vīva Antīqua</h2><p>Latin & Ancient Greek<br>Preparing for App Store release</p><div><a href="${base}support/">Support</a><a href="${base}privacy/">Privacy</a><a href="${base}terms/">Terms</a></div>`;root.append(end);
+    const end=document.createElement('footer');end.className='cinema-end';end.innerHTML=`<p class="cinema-label">THE PAST IS JUST THE BEGINNING</p><h2 class="cinema-end-brand"><img class="brand-lockup" src="${base}assets/viva-antiqua-brand-final.png" width="1402" height="1122" alt="Viva Antiqua"></h2><p>Latin & Ancient Greek<br>Preparing for App Store release</p><div><a href="${base}support/">Support</a><a href="${base}privacy/">Privacy</a><a href="${base}terms/">Terms</a></div>`;root.append(end);
     const dialog=document.createElement('dialog');dialog.className='cinema-dialog';dialog.setAttribute('aria-label','Demo viewer');dialog.innerHTML='<button class="cinema-close" type="button" aria-label="Close demo">×</button><div class="cinema-player"></div>';root.append(dialog);
     document.body.append(root);document.documentElement.classList.add('cinema-enabled');
     let frame=0,returnFocus;
