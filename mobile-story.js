@@ -11,7 +11,7 @@
       {label:'02 / UNDERSTAND',title:'Ask the text<br><em>and go deeper</em>',text:'Explore grammar and meaning with your AI tutor',image:'ask-balbus-iphone.jpg',button:'Explore the screen',focus:'balbus'},
       {label:'03 / REMEMBER',title:'Make it<br><em>stay with you</em>',text:'Review your saved words and passages',image:'review-card-iphone.png',button:'Explore the screen',focus:'review'}]},
     {id:'verse',kind:'verse',label:'LATIN · RECONSTRUCTED PRONUNCIATION',title:'Feel the rhythm<br><em>of poetry</em>',text:'Hear the Aeneid in its original metre',image:'aeneid-verse-poster.jpg',video:'aeneid-verse-iphone.mp4',button:'Listen to the Aeneid'},
-    {id:'community',kind:'community',label:'A LANGUAGE TO SHARE',title:'Create<br><em>and share</em>',text:'Write stories, role-play, and share videos with fellow learners',image:'play-iphone.jpg',button:'Explore the screen'},
+    {id:'community',kind:'community',label:'A LANGUAGE TO SHARE',title:'Create<br><em>and share</em>',text:'Write stories, role-play, and share videos with fellow learners',image:'play-iphone.jpg?v=2',button:'Explore the screen'},
     {id:'homer',kind:'homer',label:'THE ILIAD & THE ODYSSEY',title:'Homer<br><em>in song</em>',text:'All 48 books of the Iliad and the Odyssey, sung in Ancient Greek with accurate meter and pitch accent',image:'odyssey-song-poster.jpg?v=2',video:'odyssey-song-iphone.mp4?v=2',button:'Listen to Homer'},
     {id:'speech',kind:'speech',label:'ATHENS · PERICLES',title:'History<br><em>brought to life</em>',text:'Pericles’ Funeral Oration in Ancient Greek',image:'pericles-poster.jpg',video:'pericles-speech-mobile.mp4?v=2',button:'Watch the speech'}
   ];
