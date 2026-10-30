@@ -225,3 +225,9 @@
   .cinema-speech .is-playing .cinema-device video{object-fit:contain;background:#071321}
   .cinema-speech .is-playing .cinema-copy,.cinema-speech .is-playing .cinema-shade{opacity:0;pointer-events:none}
 }
+
+/* Approved cream logo and wordmark, shared across brand placements. */
+.brand{flex-shrink:0;line-height:0}.brand img.brand-lockup,.footer-brand .brand-lockup,.release img.brand-lockup{display:block;width:170px;height:auto;max-width:100%;border-radius:0;object-fit:contain}.footer-brand{display:inline-block;margin-bottom:18px}.release>span{margin-left:auto}
+@media(max-width:760px){.brand img.brand-lockup,.footer-brand .brand-lockup,.release img.brand-lockup{width:150px}.release>span{margin-left:0}}
+
+.brand-lockup{filter:url(#brand-ink)}
