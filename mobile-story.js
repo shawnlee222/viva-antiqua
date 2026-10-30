@@ -19,7 +19,7 @@
     dispose?.(); dispose=null;
     if (!media.matches) return;
     const root=document.createElement('div');root.className='cinema-mobile';
-    root.innerHTML=`<nav class="cinema-nav" aria-label="Mobile demo"><a href="#cinema-opening" class="cinema-brand">Vīva Antīqua</a><div><a href="#cinema-learning">App</a><a href="#cinema-homer">Homer</a><a href="#cinema-speech">Pericles</a></div></nav>`;
+    root.innerHTML=`<nav class="cinema-nav" aria-label="Mobile demo"><a href="#cinema-opening" class="cinema-brand" aria-label="Viva Antiqua"><img class="brand-lockup" src="/viva-antiqua/assets/viva-antiqua-brand-final.png" width="1402" height="1122" alt="Viva Antiqua"></a><div><a href="#cinema-learning">App</a><a href="#cinema-homer">Homer</a><a href="#cinema-speech">Pericles</a></div></nav>`;
     const tracks=[];
     for(const data of scenes){
       const track=document.createElement('section');track.className=`cinema-track cinema-${data.kind}`;track.id='cinema-'+data.id;
