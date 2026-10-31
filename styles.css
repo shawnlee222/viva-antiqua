@@ -235,3 +235,23 @@
 .cinema-nav .cinema-brand .brand-lockup{display:block;width:110px;height:auto;max-width:100%}
 
 .cinema-end .cinema-end-brand{margin:20px 0}.cinema-end-brand .brand-lockup{display:block;width:250px;max-width:100%;height:auto}
+
+/* Desktop story: one complete upright screen beside each passage. */
+@media(min-width:761px){
+  .demo-page>header{height:88px;min-height:88px;position:sticky;top:0;z-index:30;background:#071321f5;backdrop-filter:blur(16px)}
+  .demo-page>header .brand-lockup{width:100px}
+  .demo-page main{max-width:1240px}
+  .demo-page .hero,.demo-page .film,.demo-page .learning-feature{min-height:calc(100svh - 88px);padding-block:32px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(32px,5vw,80px);align-items:center;scroll-margin-top:88px}
+  .demo-page .hero h1,.demo-page h2:not(.visually-hidden),.demo-page .learning-feature h3{font-size:clamp(38px,4.6vw,66px);line-height:1.08;letter-spacing:-2px;font-weight:600}
+  .demo-page h1 em,.demo-page h2 em,.demo-page h3 em{font-style:normal;color:var(--accent)}
+  .demo-page .lead,.demo-page .section-intro,.demo-page .learning-feature p{font-size:clamp(18px,1.7vw,23px);line-height:1.55;color:var(--muted);max-width:490px;margin-bottom:0}
+  .demo-page .reading{padding-block:0;border:0;scroll-margin-top:88px}
+  .demo-page .learning-gallery{display:block}
+  .demo-page .learning-choices{display:none}
+  .demo-page .learning-feature>div{padding-top:0;max-width:none}
+  .demo-page .hero figure,.demo-page .film figure,.demo-page .learning-feature figure{width:auto;max-width:100%;justify-self:center;margin:0}
+  .demo-page .hero video,.demo-page .film video,.demo-page .book-screen img{display:block;width:auto;height:auto;max-height:calc(100svh - 152px);max-width:100%;object-fit:contain}
+  .demo-page .hero video,.demo-page .film:not(#watch) video{aspect-ratio:582/1266}
+  .demo-page .book-screen img{aspect-ratio:390/844}
+  .demo-page #watch video{aspect-ratio:720/1280}
+}
