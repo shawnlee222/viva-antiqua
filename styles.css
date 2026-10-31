@@ -255,3 +255,21 @@
   .demo-page .book-screen img{aspect-ratio:390/844}
   .demo-page #watch video{aspect-ratio:720/1280}
 }
+
+/* Desktop learning tabs and the community navigation shortcut. */
+@media(min-width:761px){
+ .demo-page .reading{min-height:calc(100svh - 88px);padding-top:24px;border-top:1px solid var(--line)}
+ .demo-page .learning-choices{display:flex}
+ .demo-page .learning-feature{display:none;min-height:calc(100svh - 166px);border-top:0;padding-block:16px}
+ .demo-page .learning-gallery:has(input[value="dictionary"]:checked) [data-feature="dictionary"],
+ .demo-page .learning-gallery:has(input[value="balbus"]:checked) [data-feature="balbus"],
+ .demo-page .learning-gallery:has(input[value="review"]:checked) [data-feature="review"]{display:grid}
+ .demo-page .learning-feature .book-screen img{max-height:calc(100svh - 198px)}
+}
+@media(max-width:760px) and (min-height:600px){
+ .cinema-nav>div{gap:12px}
+}
+@media(max-width:360px) and (min-height:600px){
+ .cinema-nav .cinema-brand .brand-lockup{width:86px}
+ .cinema-nav>div{gap:9px;font-size:12px}
+}
