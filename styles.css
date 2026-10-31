@@ -273,3 +273,12 @@
  .cinema-nav .cinema-brand .brand-lockup{width:86px}
  .cinema-nav>div{gap:9px;font-size:12px}
 }
+
+/* Mask the white capture canvas outside the rounded iPhone display. */
+.learning-feature[data-feature="balbus"] .book-screen img,
+.learning-feature[data-feature="review"] .book-screen img,
+.cinema-player img[src*="ask-balbus-iphone"],
+.cinema-player img[src*="review-card-iphone"]{
+ border-radius:16% / 7.5%;
+ clip-path:inset(2px round 16% / 7.5%);
+}
