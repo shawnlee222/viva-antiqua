@@ -73,13 +73,17 @@
     dispose=()=>{observer.disconnect();root.querySelectorAll('video').forEach(v=>v.pause());cancelAnimationFrame(frame);removeEventListener('scroll',schedule);removeEventListener('resize',schedule);motion.removeEventListener('change',schedule);dialog.close();dialog.querySelector('.cinema-player').replaceChildren();root.remove();if(desktopSong) desktopSong.id='iliad';document.documentElement.classList.remove('cinema-enabled');};
   }
   function followSongLink() {
-    if (location.hash !== '#iliad') return;
+    if (location.hash !== '#iliad' && new URLSearchParams(location.search).get('demo') !== 'odyssey') return;
     const target = media.matches
       ? document.getElementById('iliad')
       : document.querySelector('#iliad video');
     if (!target) return;
     const offset = media.matches ? 0 : 88;
-    window.scrollTo({top: window.scrollY + target.getBoundingClientRect().top - offset, behavior: 'instant'});
+    const html=document.documentElement;
+    const previous=html.style.scrollBehavior;
+    html.style.scrollBehavior='auto';
+    window.scrollTo({top: window.scrollY + target.getBoundingClientRect().top - offset, behavior: 'auto'});
+    requestAnimationFrame(() => { html.style.scrollBehavior=previous; });
   }
   function setupAndFollowLink() {
     setup();
@@ -89,5 +93,6 @@
   addEventListener('hashchange',followSongLink);
   addEventListener('load',followSongLink,{once:true});
   addEventListener('pageshow',() => requestAnimationFrame(followSongLink));
+  if(new URLSearchParams(location.search).get('demo') === 'odyssey') history.scrollRestoration='manual';
   setupAndFollowLink();
 })();
