@@ -18,11 +18,13 @@
   function setup() {
     dispose?.(); dispose=null;
     if (!media.matches) return;
+    const desktopSong=document.getElementById('iliad');
+    if(desktopSong) desktopSong.id='desktop-iliad';
     const root=document.createElement('div');root.className='cinema-mobile';
-    root.innerHTML=`<nav class="cinema-nav" aria-label="Mobile demo"><a href="#cinema-opening" class="cinema-brand" aria-label="Viva Antiqua"><img class="brand-lockup" src="/viva-antiqua/assets/viva-antiqua-brand-final.png" width="1402" height="1122" alt="Viva Antiqua"></a><div><a href="#cinema-learning">App</a><a href="#cinema-verse">Poetry</a><a href="#cinema-community">Share</a><a href="#cinema-homer">Songs</a><a href="#cinema-speech">Video</a></div></nav>`;
+    root.innerHTML=`<nav class="cinema-nav" aria-label="Mobile demo"><a href="#cinema-opening" class="cinema-brand" aria-label="Viva Antiqua"><img class="brand-lockup" src="/viva-antiqua/assets/viva-antiqua-brand-final.png" width="1402" height="1122" alt="Viva Antiqua"></a><div><a href="#cinema-learning">App</a><a href="#cinema-verse">Poetry</a><a href="#cinema-community">Share</a><a href="#iliad">Songs</a><a href="#cinema-speech">Video</a></div></nav>`;
     const tracks=[];
     for(const data of scenes){
-      const track=document.createElement('section');track.className=`cinema-track cinema-${data.kind}`;track.id='cinema-'+data.id;
+      const track=document.createElement('section');track.className=`cinema-track cinema-${data.kind}`;track.id=data.id==='homer'?'iliad':'cinema-'+data.id;
       const steps=data.steps||[data];
       track.style.setProperty('--stops',steps.length);
       track.innerHTML=`<div class="cinema-stage">${steps.map((s,i)=>`<article class="cinema-shot ${s.focus||''}" ${i?'inert aria-hidden="true"':''}>
@@ -68,12 +70,12 @@
     }
     function schedule(){if(!frame)frame=requestAnimationFrame(update);}
     addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule);motion.addEventListener('change',schedule);update();
-    dispose=()=>{observer.disconnect();root.querySelectorAll('video').forEach(v=>v.pause());cancelAnimationFrame(frame);removeEventListener('scroll',schedule);removeEventListener('resize',schedule);motion.removeEventListener('change',schedule);dialog.close();dialog.querySelector('.cinema-player').replaceChildren();root.remove();document.documentElement.classList.remove('cinema-enabled');};
+    dispose=()=>{observer.disconnect();root.querySelectorAll('video').forEach(v=>v.pause());cancelAnimationFrame(frame);removeEventListener('scroll',schedule);removeEventListener('resize',schedule);motion.removeEventListener('change',schedule);dialog.close();dialog.querySelector('.cinema-player').replaceChildren();root.remove();if(desktopSong) desktopSong.id='iliad';document.documentElement.classList.remove('cinema-enabled');};
   }
   function followSongLink() {
     if (location.hash !== '#iliad') return;
     const target = media.matches
-      ? document.getElementById('cinema-homer')
+      ? document.getElementById('iliad')
       : document.querySelector('#iliad video');
     if (!target) return;
     const offset = media.matches ? 0 : 88;
@@ -86,5 +88,6 @@
   media.addEventListener('change',setupAndFollowLink);
   addEventListener('hashchange',followSongLink);
   addEventListener('load',followSongLink,{once:true});
+  addEventListener('pageshow',() => requestAnimationFrame(followSongLink));
   setupAndFollowLink();
 })();
