@@ -70,5 +70,21 @@
     addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule);motion.addEventListener('change',schedule);update();
     dispose=()=>{observer.disconnect();root.querySelectorAll('video').forEach(v=>v.pause());cancelAnimationFrame(frame);removeEventListener('scroll',schedule);removeEventListener('resize',schedule);motion.removeEventListener('change',schedule);dialog.close();dialog.querySelector('.cinema-player').replaceChildren();root.remove();document.documentElement.classList.remove('cinema-enabled');};
   }
-  media.addEventListener('change',setup);setup();
+  function followSongLink() {
+    if (location.hash !== '#iliad') return;
+    const target = media.matches
+      ? document.getElementById('cinema-homer')
+      : document.querySelector('#iliad video');
+    if (!target) return;
+    const offset = media.matches ? 0 : 88;
+    window.scrollTo({top: window.scrollY + target.getBoundingClientRect().top - offset, behavior: 'instant'});
+  }
+  function setupAndFollowLink() {
+    setup();
+    requestAnimationFrame(() => requestAnimationFrame(followSongLink));
+  }
+  media.addEventListener('change',setupAndFollowLink);
+  addEventListener('hashchange',followSongLink);
+  addEventListener('load',followSongLink,{once:true});
+  setupAndFollowLink();
 })();
