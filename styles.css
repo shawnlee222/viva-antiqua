@@ -167,7 +167,7 @@
   .cinema-end{max-width:none;min-height:70svh;display:flex;flex-direction:column;justify-content:center;padding:72px 24px;border:0;background:#0d1c2b}
   .cinema-end h2{font-family:Georgia,serif;font-size:42px;letter-spacing:-1.3px;margin-bottom:18px}
   .cinema-end p:not(.cinema-label){font-size:16px;color:#b8b5ad}
-  .cinema-end>div{display:flex;gap:24px;margin-top:22px;font-size:13px}
+  .cinema-end>div{display:flex;flex-wrap:wrap;gap:24px;margin-top:22px;font-size:13px}
   .cinema-end a{display:inline-flex;min-height:44px;align-items:center}
   .cinema-dialog{position:fixed;inset:0;width:100%;max-width:none;height:100%;max-height:none;margin:0;border:0;padding:60px 12px 20px;background:#030b14;color:white}
   .cinema-dialog::backdrop{background:#030b14}
