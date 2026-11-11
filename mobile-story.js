@@ -2,7 +2,7 @@
 (() => {
   const media = matchMedia('(max-width:760px) and (min-height:600px)');
   const motion = matchMedia('(prefers-reduced-motion:reduce)');
-  const base = '/viva-antiqua/';
+  const base = '/';
   let dispose;
   const scenes = [
     {id:'opening',kind:'opening',label:'VIVA ANTIQUA',title:'The ancient world<br><em>in your hands</em>',text:'Read, listen, and understand',image:'caesar-reader-poster.jpg',video:'caesar-reader-iphone.mp4',button:'Watch the reader'},
@@ -20,7 +20,7 @@
     const desktopSong=document.getElementById('iliad');
     if(desktopSong) desktopSong.id='desktop-iliad';
     const root=document.createElement('div');root.className='cinema-mobile';
-    root.innerHTML=`<nav class="cinema-nav" aria-label="Mobile demo"><a href="#cinema-opening" class="cinema-brand" aria-label="Viva Antiqua"><img class="brand-lockup" src="/viva-antiqua/assets/viva-antiqua-brand-final.png" width="1402" height="1122" alt="Viva Antiqua"></a><div><a href="#cinema-learning">App</a><a href="#cinema-verse">Poetry</a><a href="#iliad">Songs</a><a href="#cinema-speech">Video</a></div></nav>`;
+    root.innerHTML=`<nav class="cinema-nav" aria-label="Mobile demo"><a href="#cinema-opening" class="cinema-brand" aria-label="Viva Antiqua"><img class="brand-lockup" src="/assets/viva-antiqua-brand-final.png" width="1402" height="1122" alt="Viva Antiqua"></a><div><a href="#cinema-learning">App</a><a href="#cinema-verse">Poetry</a><a href="#iliad">Songs</a><a href="#cinema-speech">Video</a></div></nav>`;
     const tracks=[];
     for(const data of scenes){
       const track=document.createElement('section');track.className=`cinema-track cinema-${data.kind}`;track.id=data.id==='homer'?'iliad':'cinema-'+data.id;
