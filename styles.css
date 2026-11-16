@@ -16,7 +16,7 @@
 /* Clip the captured iPhone corners, including the desktop outside its screen. */
 .demo video,.book-screen img,.learning-feature .book-screen img{border:0;background:transparent;border-radius:14% / 6.5%;clip-path:inset(1px round 14% / 6.5%)}
 .book-screen a{display:block;line-height:0}
-#watch video{border:0;background:transparent;border-radius:18px}
+#watch video,#watch-homer video{border:0;background:transparent;border-radius:18px}
 .play-features{list-style:none;margin:32px 0 0;padding:0;display:grid;gap:26px;max-width:500px}
 .play-features strong{display:block;font-size:23px;font-weight:600;margin-bottom:4px}
 .play-features span{display:block;color:var(--muted);font-size:20px;line-height:1.6}
@@ -72,7 +72,7 @@
   /* Reserve media dimensions before lazy images load so anchor links stay aligned. */
   .demo,.film figure,.book-screen{width:min(184px,calc(56svh * 388 / 844))}
   .hero .demo{width:min(161px,calc(48svh * 582 / 1266))}
-  #watch figure{width:min(225px,calc(56svh * 720 / 1280))}
+  #watch figure,#watch-homer figure{width:min(225px,calc(56svh * 720 / 1280))}
   .demo video,.film video,.book-screen img,.hero .demo video{width:100%;max-height:none;height:auto}
   .book-screen img{aspect-ratio:388 / 844}
 }
@@ -93,7 +93,7 @@
   .film h2{font-size:clamp(29px,8vw,38px);margin-bottom:12px}
   .film .section-intro{font-size:16px;line-height:1.5;max-width:340px;margin-inline:auto}
   .film .demo{width:calc(clamp(220px,100svh - 280px,560px) * 582 / 1266)}
-  #watch figure{width:calc(clamp(220px,100svh - 290px,560px) * 720 / 1280)}
+  #watch figure,#watch-homer figure{width:calc(clamp(220px,100svh - 290px,560px) * 720 / 1280)}
   #play .book-screen{width:calc(clamp(180px,100svh - 440px,400px) * 388 / 844)}
   .play-features{margin-top:16px;gap:10px}
   .play-features strong{font-size:16px;margin-bottom:0}
@@ -251,9 +251,9 @@
   .demo-page .learning-feature>div{padding-top:0;max-width:none}
   .demo-page .hero figure,.demo-page .film figure,.demo-page .learning-feature figure{width:auto;max-width:100%;justify-self:center;margin:0}
   .demo-page .hero video,.demo-page .film video,.demo-page .book-screen img{display:block;width:auto;height:auto;max-height:calc(100svh - 152px);max-width:100%;object-fit:contain}
-  .demo-page .hero video,.demo-page .film:not(#watch) video{aspect-ratio:582/1266}
+  .demo-page .hero video,.demo-page .film:not(#watch):not(#watch-homer) video{aspect-ratio:582/1266}
   .demo-page .book-screen img{aspect-ratio:390/844}
-  .demo-page #watch video{aspect-ratio:720/1280}
+  .demo-page #watch video,.demo-page #watch-homer video{aspect-ratio:720/1280}
 }
 
 /* Desktop learning tabs and the community navigation shortcut. */
