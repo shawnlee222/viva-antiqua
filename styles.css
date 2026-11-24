@@ -295,3 +295,6 @@
 .business-inquiries h2,.cinema-end .business-inquiries h2{font-size:24px;letter-spacing:-.4px;margin:0 0 14px}
 .business-inquiries p{font-size:16px;color:var(--muted);line-height:1.7;margin:0 0 14px}
 .business-inquiries a{overflow-wrap:anywhere;text-decoration:underline;text-underline-offset:3px}
+
+.store-button{display:inline-block;padding:12px 22px;border-radius:999px;background:var(--text);color:var(--bg);font-weight:600;font-size:16px;text-decoration:none}.store-button:hover{background:var(--accent);color:var(--text)}.release>.store-button{margin-left:auto}@media (max-width:700px){.release>.store-button{grid-column:1/-1;justify-self:start;margin-left:0}}
+.cinema-store{margin-top:14px;pointer-events:auto;font-size:15px;padding:10px 18px}

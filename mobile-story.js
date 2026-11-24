@@ -29,7 +29,7 @@
       track.style.setProperty('--stops',steps.length);
       track.innerHTML=`<div class="cinema-stage">${steps.map((s,i)=>`<article class="cinema-shot ${s.focus||''}" ${i?'inert aria-hidden="true"':''}>
         <div class="cinema-art">${s.video?`<div class="cinema-device"><video controls playsinline preload="none" src="${base}media/${s.video}" poster="${base}assets/${s.image}" aria-label="${s.button}" width="${data.kind==='speech'?720:388}" height="${data.kind==='speech'?1280:844}"></video></div>`:`<button class="cinema-device cinema-image-open" type="button" data-src="${base}assets/${s.image}" aria-label="${s.button}"><img src="${base}assets/${s.image}" alt="${s.label}" width="388" height="844" loading="lazy"></button>`}</div>
-        <div class="cinema-shade"></div><div class="cinema-copy">${data.kind==='opening'||data.steps?`<p class="cinema-label">${s.label}</p>`:''}<h2>${s.title}</h2><p class="cinema-description">${s.text}</p></div>
+        <div class="cinema-shade"></div><div class="cinema-copy">${data.kind==='opening'||data.steps?`<p class="cinema-label">${s.label}</p>`:''}<h2>${s.title}</h2><p class="cinema-description">${s.text}</p>${data.kind==='opening'&&i===0?'<a class="store-button cinema-store" href="https://apps.apple.com/app/id6795757400">Download on the App Store</a>':''}</div>
         <div class="cinema-count" aria-hidden="true">${data.kind==='speech'?'':data.steps?`${i+1} / 3`:'SCROLL TO EXPLORE ↓'}</div></article>`).join('')}<div class="cinema-progress" aria-hidden="true"><span></span></div></div>`;
       root.append(track);tracks.push({track,shots:[...track.querySelectorAll('.cinema-shot')]});
     }
