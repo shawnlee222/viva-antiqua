@@ -297,4 +297,5 @@
 .business-inquiries a{overflow-wrap:anywhere;text-decoration:underline;text-underline-offset:3px}
 
 .store-button{display:inline-block;padding:12px 22px;border-radius:999px;background:var(--text);color:var(--bg);font-weight:600;font-size:16px;text-decoration:none}.store-button:hover{background:var(--accent);color:var(--text)}.release>.store-button{margin-left:auto}@media (max-width:700px){.release>.store-button{grid-column:1/-1;justify-self:start;margin-left:0}}
-.cinema-store{margin-top:14px;pointer-events:auto;font-size:15px;padding:10px 18px}
+.cinema-store{width:fit-content;align-self:flex-start;justify-self:start;margin-top:12px;pointer-events:auto;font-size:14px;line-height:1.2;padding:9px 16px;white-space:nowrap}
+.cinema-end-store{margin:4px 0 44px}
